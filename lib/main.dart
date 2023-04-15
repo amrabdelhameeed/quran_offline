@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,8 +23,13 @@ void main() async {
     () {
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
           .then((value) {
-        runApp(MyApp(
-          appRouter: AppRouter(),
+        runApp(DevicePreview(
+          enabled: !kReleaseMode,
+          builder: (context) {
+            return MyApp(
+              appRouter: AppRouter(),
+            );
+          },
         ));
       });
     },
@@ -41,6 +48,8 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           var cubit = ThemeCubit.get(context);
           return MaterialApp(
+            useInheritedMediaQuery: true,
+            builder: DevicePreview.appBuilder,
             title: "Quran Offline",
             debugShowCheckedModeBanner: false,
             darkTheme: AppTheme.darkTheme,

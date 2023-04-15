@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.quran_20_3">
-        <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="Quran Offline"
         android:icon="@mipmap/ic_launcher">
